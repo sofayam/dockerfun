@@ -1,0 +1,43 @@
+Solution: Keep the Container Running
+Modify the CMD in your Dockerfile to keep it running:
+
+Updated Dockerfile
+
+# Use minimal Alpine base image
+FROM alpine:latest
+
+# Install basic utilities (optional)
+RUN apk add --no-cache bash coreutils
+
+# Set working directory (optional)
+WORKDIR /mnt/shared
+
+# Keep container running
+CMD ["sh", "-c", "while true; do sleep 30; done"]
+Rebuild and Run the Container
+Step 1: Build the Image
+
+docker build -t alpine-container .
+Step 2: Run the Container
+
+docker run -d --name alpine-test -v ~/docker_shared:/mnt/shared alpine-container
+-d runs it in detached mode so it stays alive.
+Step 3: Access the Running Container
+
+docker exec -it alpine-test sh
+Now you should be inside the container without errors. 🎉
+
+Alternative: Run in Interactive Mode
+If you don't want to modify the Dockerfile, just start the container in interactive mode instead of detached mode:
+
+docker run -it --name alpine-test -v ~/docker_shared:/mnt/shared alpine-container sh
+This keeps the container alive until you exit manually.
+
+Would this work for you? 🚀
+
+
+
+
+
+
+
