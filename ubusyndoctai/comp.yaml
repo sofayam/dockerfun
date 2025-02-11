@@ -1,0 +1,13 @@
+version: '3'
+services:
+  tailscale:
+    build: .
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      - TAILSCALE_AUTHKEY=kTYqE6Ko7W11CNTRL
+      - HOSTNAME=synology-nas
+    volumes:
+      - ./tailscale-data:/var/lib/tailscale
+    restart: unless-stopped
