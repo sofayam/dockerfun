@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  ubuntu:
+    build: .
+    ports:
+      - "2222:22"
+    volumes:
+      - ubuntu_home:/home/ubuntu
+      - ubuntu_etc:/etc
+      - ubuntu_var:/var
+      - data:/data
+    restart: unless-stopped
+
+volumes:
+  ubuntu_home:
+  ubuntu_etc:
+  data:
+  ubuntu_var:
