@@ -4,7 +4,7 @@ services:
   ubuntu:
     build: .
     ports:
-      - "2222:22"
+      - "0.0.0.0:2222:22"
     volumes:
       - ubuntu_home:/home/ubuntu
       - ubuntu_etc:/etc
